@@ -22,7 +22,9 @@ describe('AuthController', () => {
           synchronize: true,
           entities: [User]
         })
-        ,TypeOrmModule.forFeature([User])],
+        ,TypeOrmModule.forFeature([User])
+      
+      ],
       controllers: [AuthController],
       providers:[
         AuthService,
