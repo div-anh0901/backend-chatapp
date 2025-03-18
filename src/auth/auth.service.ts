@@ -1,9 +1,9 @@
 import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common';
 import { IAuthService } from './auth';
-import { Services } from 'src/utils/contants';
-import { IUserService } from 'src/user/user';
-import { ValidateUserDetails } from 'src/utils/types';
-import { comparePassword } from 'src/utils/helpers';
+import { Services } from '../utils/contants';
+import { IUserService } from '../user/user';
+import { ValidateUserDetails } from '../utils/types';
+import { comparePassword } from '../utils/helpers';
 
 @Injectable()
 export class AuthService implements IAuthService {

@@ -1,7 +1,7 @@
 import { Body, Controller, Get, HttpStatus, Inject, Post, Req, Res, UseGuards } from '@nestjs/common';
-import { Services } from 'src/utils/contants';
+import { Services } from '../utils/contants';
 import { IAuthService } from './auth';
-import { IUserService } from 'src/user/user';
+import { IUserService } from '../user/user';
 import { CreateUserDto } from './dtos/CreateUser.dto';
 import { AuthGuard } from '@nestjs/passport';
 import { AuthenticatedGuard, LocalAuthGuard } from './utils/Guards';
