@@ -13,17 +13,16 @@ describe('AuthController', () => {
     const module: TestingModule = await Test.createTestingModule({
       imports:[UserModule,
         TypeOrmModule.forRoot({
-          type: "mysql",
-          host: process.env.MYSQL_DB_HOST,
-          port: parseInt(process.env.MYSQL_DB_PORT!),
-          username: process.env.MYSQL_DB_USERNAME,
-          password: process.env.MYSQL_DB_PASSWORD,
-          database: process.env.MYSQL_DB_NAME,
+          type: 'mysql',
+          host: "localhost",
+          port:  3306,
+          username: "root",
+          password: "12345678",
+          database: "chat_app",
+          entities: [User],
           synchronize: true,
-          entities: [User]
-        })
-        ,TypeOrmModule.forFeature([User])
-      
+        }),
+        TypeOrmModule.forFeature([User])
       ],
       controllers: [AuthController],
       providers:[
