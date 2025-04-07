@@ -1,3 +1,5 @@
+import { User } from "./typeorm";
+
 export type CreateUserDetails = {
     email: string;
     password: string;
@@ -19,7 +21,6 @@ export type CreateUserDetails = {
     recipientId: number;
     message: string;
   }
-
   export interface AuthenticatedRequest extends Request {
     user: User;
   }
