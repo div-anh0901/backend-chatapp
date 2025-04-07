@@ -10,13 +10,10 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const dataSource = app.get(DataSource);
 
-
   app.setGlobalPrefix("api")
   app.enableCors({ origin: ['http://localhost:5173'], credentials: true });
   app.useGlobalPipes(new ValidationPipe());
-
   app.use(sessionMiddleware(dataSource))
-
   app.use(passport.initialize());
   app.use(passport.session());
 

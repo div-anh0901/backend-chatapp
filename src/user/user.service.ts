@@ -34,7 +34,4 @@ export class UserService implements IUserService {
       findUserByEmail(email: string): Promise<User | null> {
         return  this.userRepository.findOneBy({email});
       }
-
-      
-      
 }

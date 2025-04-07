@@ -14,3 +14,12 @@ export type CreateUserDetails = {
     id: number;
     email: string;
   }>;
+
+  export type CreateConversationParams={
+    recipientId: number;
+    message: string;
+  }
+
+  export interface AuthenticatedRequest extends Request {
+    user: User;
+  }

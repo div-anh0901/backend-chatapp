@@ -8,8 +8,8 @@ import { User } from '../utils/typeorm';
   imports:[TypeOrmModule.forFeature([User])],
   providers: [
     {
-      provide:Services.USERS,
-      useClass:UserService
+      provide: Services.USERS,
+      useClass: UserService
     }
   ],
   exports:[

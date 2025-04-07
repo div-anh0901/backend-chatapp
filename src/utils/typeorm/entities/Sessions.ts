@@ -7,8 +7,8 @@ import { Column, DeleteDateColumn, Entity, Index, PrimaryColumn } from "typeorm"
 export class Session implements ISession{
 
    
-  @Column('bigint')
-  expiredAt: number;
+    @Column('bigint')
+    expiredAt: number;
 
     @PrimaryColumn('varchar', {length: 255})
     id: string;

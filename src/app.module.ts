@@ -5,6 +5,7 @@ import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import entities from './utils/typeorm';
 import { PassportModule } from '@nestjs/passport';
+import { ConversationsModule } from './conversations/conversations.module';
 
 @Module({
   imports: [
@@ -21,8 +22,8 @@ import { PassportModule } from '@nestjs/passport';
       database: process.env.MYSQL_DB_NAME,
       synchronize: true,
       entities: entities
-    })
-  
+    }),
+    ConversationsModule
   ],
   controllers: [],
   providers: [],
