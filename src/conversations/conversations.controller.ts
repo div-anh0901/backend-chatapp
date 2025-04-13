@@ -24,7 +24,7 @@ export class ConversationsController {
         return this.conversationsService.getConversation(id);
     }
 
-    @Get()
+    @Get(":id")
     async getConversationById(@Param("id") id: number){
         const conversation = await this.conversationsService.findConversationById(id);
         return conversation

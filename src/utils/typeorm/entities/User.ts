@@ -1,5 +1,6 @@
 import { Exclude } from 'class-transformer';
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Message } from './Messages';
 @Entity({ name: 'users' })
 export class User {
   @PrimaryGeneratedColumn()
@@ -14,5 +15,10 @@ export class User {
   @Column()
   @Exclude()
   password: string;
+
+
+  @OneToMany(()=> Message, (message)=> message.author)
+  @JoinColumn()
+  messages: Message[]
 }
 

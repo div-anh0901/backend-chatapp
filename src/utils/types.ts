@@ -24,3 +24,9 @@ export type CreateUserDetails = {
   export interface AuthenticatedRequest extends Request {
     user: User;
   }
+
+  export type CreateMessageParams = {
+    content:string;
+    conversationId: number;
+    user: User;
+  }

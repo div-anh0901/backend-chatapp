@@ -48,11 +48,9 @@ export class ConversationsService implements IConversationService {
 
   async createConversation(user: User, params: CreateConversationParams) {
         const {recipientId} = params;
-
         if(user.id === recipientId){
             throw new HttpException('Cannot create Conversation', HttpStatus.BAD_REQUEST)
         }
-
         const existingConversation=await this.conversationRepository.findOne({
             where:[
                 {
@@ -65,7 +63,6 @@ export class ConversationsService implements IConversationService {
                 }
             ]
         });
-
 
         if(existingConversation){
             throw new HttpException('Conversation exists', HttpStatus.CONFLICT);
@@ -83,10 +80,9 @@ export class ConversationsService implements IConversationService {
             creator:user,
             recipient:recipient
         })
-  
-      return this.conversationRepository.save(
-        conversation
-      );
+        return this.conversationRepository.save(
+            conversation
+        );
    }
 
 }
