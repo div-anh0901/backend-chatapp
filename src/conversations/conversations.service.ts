@@ -17,7 +17,7 @@ export class ConversationsService implements IConversationService {
     ){}
 
    async getConversation(id: number): Promise<Conversation[]> {
-       return this.conversationRepository.createQueryBuilder("converesation")
+       return this.conversationRepository.createQueryBuilder("conversation")
                 .leftJoin('conversation.creator', "creator")
                 .addSelect([
                     'creator.id',
@@ -63,23 +63,18 @@ export class ConversationsService implements IConversationService {
                 }
             ]
         });
-
         if(existingConversation){
             throw new HttpException('Conversation exists', HttpStatus.CONFLICT);
         }
-
-
         const recipient = await this.userService.findUserByID(recipientId);
-
-
         if(!recipient){
             throw new HttpException('Recipient Not found', HttpStatus.BAD_REQUEST);
         }
 
-        const conversation = this.conversationRepository.create({
+        const conversation =  this.conversationRepository.create({
             creator:user,
             recipient:recipient
-        })
+        });
         return this.conversationRepository.save(
             conversation
         );

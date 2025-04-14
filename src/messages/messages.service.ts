@@ -52,12 +52,25 @@ export class MessagesService implements IMessageService {
         return savedMessage;
     }
 
-getMessagesByConversationId(conversationId: number): Promise<Message[]> {
-    return this.messageRepository.find({
-        relations: ['author'],
-        where: { conversation: { id: conversationId } },
-        order: { createdAt: 'DESC' },
-      });
-}
+    async getMessagesByConversationId(conversationId: number): Promise<Message[]> {
+    /* const conversation = await this.messageRepository.find({
+            relations: ['author','conversation'],
+            where: { conversation: { id: conversationId } },
+            order: { createdAt: 'DESC' },
+        });
+
+        return conversation;*/
+        const conversation = await this.messageRepository.createQueryBuilder("message")
+        .leftJoin("message.author", "author")
+        .addSelect([
+            "author.id",
+            "author.username",
+            "author.email",
+        ])
+        .leftJoin("message.conversation", "conversation")
+        .where("conversation.id = :id", {id:conversationId})
+        .getMany()
+        return conversation;
+    }
 
 }

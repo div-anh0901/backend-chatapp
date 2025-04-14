@@ -24,11 +24,11 @@ export class MessagesController {
     }
 
     @Get(':conversationId')
-   getMessagesFromConversation(
-     @AuthUser() user: User,
-     @Param('conversationId') conversationId: number,
-   ) {
-     return this.messageService.getMessagesByConversationId(conversationId);
-   }
- 
+    getMessagesFromConversation(
+        @AuthUser() user: User,
+         @Param('conversationId') conversationId: number,
+    ) {
+        return this.messageService.getMessagesByConversationId(conversationId);
+    }
+
 }

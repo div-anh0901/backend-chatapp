@@ -12,8 +12,6 @@ export class ConversationsController {
         private readonly conversationsService: IConversationService
     ){}
 
-
-
     @Post()
     createConversation(@AuthUser() user: User,@Body() createConversationPayload:CreateConversationDto ){
         return this.conversationsService.createConversation(user,createConversationPayload);

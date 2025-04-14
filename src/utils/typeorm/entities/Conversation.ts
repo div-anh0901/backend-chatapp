@@ -4,7 +4,7 @@ import { Message } from "./Messages";
 
 
 @Entity({name:"conversations"})
-@Index(['creator.id', 'recipient.id'], { unique: true })
+//@Index(['creator.id', 'recipient.id'])
 export class Conversation{
     @PrimaryGeneratedColumn()
     id: number;
