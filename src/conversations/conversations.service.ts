@@ -51,18 +51,18 @@ export class ConversationsService implements IConversationService {
         if(user.id === recipientId){
             throw new HttpException('Cannot create Conversation', HttpStatus.BAD_REQUEST)
         }
-        const existingConversation=await this.conversationRepository.findOne({
-            where:[
-                {
-                    creator:{id: user.id},
-                    recipient: {id: recipientId}
-                },
-                {
-                    creator: {id: recipientId},
-                    recipient: {id: user.id}
-                }
-            ]
-        });
+        const existingConversation = await this.conversationRepository.findOne({
+            where: [
+              {
+                creator: { id: user.id },
+                recipient: { id: recipientId },
+              },
+              {
+                creator: { id: recipientId },
+                recipient: { id: user.id },
+              },
+            ],
+          });
         if(existingConversation){
             throw new HttpException('Conversation exists', HttpStatus.CONFLICT);
         }

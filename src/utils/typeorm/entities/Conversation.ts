@@ -10,11 +10,11 @@ export class Conversation{
     id: number;
 
 
-    @OneToOne(()=> User, {createForeignKeyConstraints: true})
+    @OneToOne(()=> User, {createForeignKeyConstraints: false})
     @JoinColumn()
     creator: User;
 
-    @OneToOne(()=> User, {createForeignKeyConstraints: true})
+    @OneToOne(()=> User, {createForeignKeyConstraints: false})
     @JoinColumn()
     recipient: User;
 

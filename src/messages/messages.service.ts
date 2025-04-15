@@ -5,6 +5,7 @@ import { Repository } from 'typeorm';
 import { IMessageService } from './message';
 import { CreateMessageParams } from '@/utils/types';
 import { instanceToPlain } from 'class-transformer';
+import { EventEmitter2 } from '@nestjs/event-emitter';
 
 @Injectable()
 export class MessagesService implements IMessageService {
@@ -30,18 +31,11 @@ export class MessagesService implements IMessageService {
 
         if(!conversation)
             throw new HttpException('Conversation not found', HttpStatus.BAD_REQUEST);
-
         const {creator, recipient} = conversation;
-
-
-        
 
         if(creator.id !== user.id && recipient.id != user.id)
             throw new HttpException('Cannot Create Message', HttpStatus.FORBIDDEN);
-
-      
-
-     const newMessage =  this.messageRepository.create({
+        const newMessage =  this.messageRepository.create({
             content,
             conversation,
             author: instanceToPlain(user)
