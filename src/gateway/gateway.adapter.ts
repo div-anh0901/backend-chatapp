@@ -22,8 +22,8 @@ export class WebsocketAdapter extends IoAdapter{
             if (!clientCookie) {
               return next(new Error('Not Authenticated. No cookies were sent'));
             }
+
             const { CHAT_APP_SESSION_ID } = cookie.parse(clientCookie);
-            
             if (!CHAT_APP_SESSION_ID) {
               return next(new Error('Not Authenticated'));
             }

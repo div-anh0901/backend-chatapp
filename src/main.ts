@@ -13,11 +13,11 @@ async function bootstrap() {
   const adapter = new WebsocketAdapter(app);
 
   
+  app.use(sessionMiddleware(dataSource))
   app.useWebSocketAdapter(adapter);
   app.setGlobalPrefix("api")
   app.enableCors({ origin: ['http://localhost:5173'], credentials: true });
   app.useGlobalPipes(new ValidationPipe());
-  app.use(sessionMiddleware(dataSource))
   app.use(passport.initialize());
   app.use(passport.session());
 

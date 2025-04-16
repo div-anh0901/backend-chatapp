@@ -24,7 +24,7 @@ export class MessagesController {
     ){
         const msg = await this.messageService.createMessage({...createMessageDto, user});
         this.eventEmitter.emit('message.create', msg);
-        return 
+        return msg;
 
     }
 

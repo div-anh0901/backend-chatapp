@@ -17,6 +17,7 @@ import { IGatewaySession } from './gatewat.session';
   cors: {
     origin: ['http://localhost:5173'],
     credentials: true,
+    withCredentials: true
   },
 })
 export class MessagingGateway implements OnGatewayConnection {
@@ -43,8 +44,6 @@ export class MessagingGateway implements OnGatewayConnection {
   
   @OnEvent('message.create')
   handleMessageCreateEvent(payload: Message) {
-    console.log('Inside message.create');
-    console.log(payload);
     const {
       author,
       conversation: { creator, recipient },
@@ -56,9 +55,9 @@ export class MessagingGateway implements OnGatewayConnection {
         ? this.sessions.getUserSocket(recipient.id)
         : this.sessions.getUserSocket(creator.id);
 
-    console.log(`Recipient Socket: ${JSON.stringify(recipientSocket.user)}`);
-
-    recipientSocket.emit('onMessage', payload);
-    authorSocket.emit('onMessage', payload);
+       if(recipientSocket != undefined){
+          recipientSocket.emit('onMessage', payload);
+       }
+      authorSocket.emit('onMessage', payload);
   }
 }

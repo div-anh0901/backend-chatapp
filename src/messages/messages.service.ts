@@ -47,13 +47,6 @@ export class MessagesService implements IMessageService {
     }
 
     async getMessagesByConversationId(conversationId: number): Promise<Message[]> {
-    /* const conversation = await this.messageRepository.find({
-            relations: ['author','conversation'],
-            where: { conversation: { id: conversationId } },
-            order: { createdAt: 'DESC' },
-        });
-
-        return conversation;*/
         const conversation = await this.messageRepository.createQueryBuilder("message")
         .leftJoin("message.author", "author")
         .addSelect([
