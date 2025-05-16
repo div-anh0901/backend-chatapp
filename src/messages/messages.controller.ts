@@ -30,7 +30,7 @@ export class MessagesController {
 
     @Get(':conversationId')
     getMessagesFromConversation(
-        @AuthUser() user: User,
+        @AuthUser() user: User  ,
          @Param('conversationId',ParseIntPipe) conversationId: number,
     ) {
         return this.messageService.getMessagesByConversationId(conversationId);
